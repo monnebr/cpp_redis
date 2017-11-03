@@ -219,6 +219,14 @@ public:
   subscriber& punsubscribe(const std::string& pattern);
 
   //!
+  //! publish a message on the given channel
+  //! The command is not effectively sent immediately but stored in an internal buffer until commit() is called.
+  //!
+  //! \return current instance
+  //!
+  subscriber& publish(const std::string channel, const std::string message);
+
+  //!
   //! commit pipelined transaction
   //! that is, send to the network all commands pipelined by calling send() / subscribe() / ...
   //!

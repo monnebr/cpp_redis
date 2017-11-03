@@ -242,6 +242,15 @@ subscriber::punsubscribe(const std::string& pattern) {
   return *this;
 }
 
+subscriber& 
+subscriber::publish(const std::string channel, const std::string message)
+{
+	__CPP_REDIS_LOG(debug, "cpp_redis::subscriber publish on channel " + channel);
+	m_client.send({ "PUBLISH", channel, message });
+
+	return *this;
+}
+
 subscriber&
 subscriber::commit(void) {
   try {
